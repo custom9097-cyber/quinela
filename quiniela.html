@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Quiniela</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1 id="titulo"></h1>
+
+<input type="text" id="nombre" placeholder="Escribe tu nombre">
+
+<div id="partidos"></div>
+
+<button onclick="agregarQuiniela()">Agregar quiniela ($10)</button>
+
+<h3>Quinielas agregadas</h3>
+<ul id="listaQuinielas"></ul>
+
+<h3 id="total">TOTAL: $0</h3>
+
+<button onclick="enviarWhats()">Enviar a WhatsApp</button>
+
+<script src="js/quiniela.js"></script>
+</body>
+</html>

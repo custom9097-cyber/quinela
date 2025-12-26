@@ -1,0 +1,20 @@
+[
+  {
+    "id": "liga-mx",
+    "nombre": "Liga MX",
+    "partidos": [
+      { "id": 1, "local": "América", "visita": "Chivas" },
+      { "id": 2, "local": "Pumas", "visita": "Cruz Azul" },
+      { "id": 3, "local": "Tigres", "visita": "Monterrey" }
+    ]
+  },
+  {
+    "id": "premier",
+    "nombre": "Premier League",
+    "partidos": [
+      { "id": 1, "local": "Arsenal", "visita": "Chelsea" },
+      { "id": 2, "local": "Liverpool", "visita": "Man City" },
+      { "id": 3, "local": "Tottenham", "visita": "Man United" }
+    ]
+  }
+]
