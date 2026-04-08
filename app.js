@@ -11,11 +11,12 @@ fetch('./partidos.json')
       div.className = 'partido';
 
       div.innerHTML = `
-        <b>${p.local} vs ${p.visitante}</b><br><br>
-        <label><input type="radio" name="p${p.id}" value="${p.local}"> ${p.local}</label><br>
-        <label><input type="radio" name="p${p.id}" value="Empate"> Empate</label><br>
-        <label><input type="radio" name="p${p.id}" value="${p.visitante}"> ${p.visitante}</label>
-      `;
+  <b>${p.local} vs ${p.visitante}</b><br><br>
+  <label><input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()"> ${p.local}</label><br>
+  <label><input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()"> Empate</label><br>
+  <label><input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()"> ${p.visitante}</label>
+  <hr>
+`;
 
       contenedor.appendChild(div);
     });
@@ -38,7 +39,8 @@ function enviarQuiniela() {
     }
   });
 
-  mensaje += `\nPago: $10 pesos`;
+ let total = document.getElementById('total').innerText;
+mensaje += `\nPago total: $${total} pesos`
 
   let telefono = "525515112194"; // cambia por tu numero
   let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
@@ -52,4 +54,19 @@ function aleatorio() {
     let random = Math.floor(Math.random() * opciones.length);
     opciones[random].checked = true;
   });
+}
+
+function calcularTotal(){
+  let totalExtras = 0;
+
+  partidosData.forEach(p => {
+    let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`).length;
+
+    if(seleccionados > 1){
+      totalExtras += (seleccionados - 1);
+    }
+  });
+
+  let total = 10 * Math.pow(2, totalExtras);
+  document.getElementById('total').innerText = total;
 }
