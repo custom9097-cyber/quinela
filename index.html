@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Quinielas</title>
-<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiniela Jornada</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:800px;margin:auto;padding:20px}
+h2{text-align:center}
+.partido{border:1px solid #ccc;padding:10px;margin-bottom:10px;border-radius:8px}
+button{padding:10px 15px;font-size:16px;border-radius:6px;cursor:pointer}
+</style>
 </head>
 <body>
 
-<h1>Quinielas de Fútbol</h1>
+<h2>Quiniela Jornada</h2>
 
-<button onclick="location.href='quiniela.html'">Entrar a Quiniela</button>
-<button onclick="location.href='admin.html'">Administrador</button>
+<div id="partidos"></div>
 
+<br>
+<label>Nombre:</label>
+<input type="text" id="nombre" style="width:100%;padding:8px">
+
+<br><br>
+<button onclick="enviarQuiniela()">Enviar Quiniela por WhatsApp</button>
+
+<script src="app.js"></script>
 </body>
 </html>
