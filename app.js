@@ -40,7 +40,7 @@ function enviarQuiniela() {
 
   mensaje += `\nPago: $10 pesos`;
 
-  let telefono = "5515112194"; // cambia por tu numero
+  let telefono = "525515112194"; // cambia por tu numero
   let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
 
   window.open(url, '_blank');
