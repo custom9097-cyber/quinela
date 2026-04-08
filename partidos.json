@@ -1,5 +1,11 @@
 [
-  { "id": 1, "local": "América", "visitante": "Pumas" },
-  { "id": 2, "local": "Chivas", "visitante": "Cruz Azul" },
-  { "id": 3, "local": "Tigres", "visitante": "Monterrey" }
+  { "id": 1, "local": "Puebla", "visitante": "León" },
+  { "id": 2, "local": "Juárez", "visitante": "Xolos" },
+  { "id": 3, "local": "Gallos", "visitante": "Necaxa" },
+  { "id": 4, "local": "Tigres", "visitante": "Chivas" },
+  { "id": 5, "local": "Atlas", "visitante": "Monterrey" },
+  { "id": 6, "local": "Pachuca", "visitante": "Santos" },
+  { "id": 7, "local": "América", "visitante": "Cruz Azul" },
+  { "id": 8, "local": "Pumas", "visitante": "Mazatlán" },
+  { "id": 9, "local": "Toluca", "visitante": "San Luis" }
 ]
