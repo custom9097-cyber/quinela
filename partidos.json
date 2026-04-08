@@ -1,0 +1,5 @@
+[
+  { "id": 1, "local": "América", "visitante": "Pumas" },
+  { "id": 2, "local": "Chivas", "visitante": "Cruz Azul" },
+  { "id": 3, "local": "Tigres", "visitante": "Monterrey" }
+]
