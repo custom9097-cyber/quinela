@@ -32,12 +32,16 @@ function enviarQuiniela() {
 
   let mensaje = `*Quiniela Jornada*\nNombre: ${nombre}\n\n`;
 
-  partidosData.forEach(p => {
-    let sel = document.querySelector(`input[name="p${p.id}"]:checked`);
-    if(sel){
-      mensaje += `Partido ${p.id} (${p.local} vs ${p.visitante}): ${sel.value}\n`;
-    }
-  });
+partidosData.forEach(p => {
+  let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`);
+
+  if(seleccionados.length > 0){
+    let valores = [];
+    seleccionados.forEach(s => valores.push(s.value));
+
+    mensaje += `Partido ${p.id} (${p.local} vs ${p.visitante}): ${valores.join(' / ')}\n`;
+  }
+});
 
  let total = document.getElementById('total').innerText;
 mensaje += `\nPago total: $${total} pesos`
