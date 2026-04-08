@@ -45,3 +45,11 @@ function enviarQuiniela() {
 
   window.open(url, '_blank');
 }
+
+function aleatorio() {
+  partidosData.forEach(p => {
+    let opciones = document.querySelectorAll(`input[name="p${p.id}"]`);
+    let random = Math.floor(Math.random() * opciones.length);
+    opciones[random].checked = true;
+  });
+}
