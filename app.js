@@ -74,3 +74,38 @@ function calcularTotal(){
   let total = 10 * Math.pow(2, totalExtras);
   document.getElementById('total').innerText = total;
 }
+
+async function tablaPosiciones() {
+
+  const q = await fetch('./quinielas.json');
+  const quinielas = await q.json();
+
+  const r = await fetch('./resultados.json');
+  const resultados = await r.json();
+
+  let tabla = [];
+
+  quinielas.forEach(jugador => {
+    let puntos = 0;
+
+    resultados.forEach(res => {
+      let picks = jugador.respuestas[res.id];
+
+      if(picks && picks.includes(res.resultado)){
+        puntos++;
+      }
+    });
+
+    tabla.push({ nombre: jugador.nombre, puntos });
+  });
+
+  tabla.sort((a,b) => b.puntos - a.puntos);
+
+  let html = "<h2>Tabla de Posiciones</h2><ol>";
+  tabla.forEach(t => {
+    html += `<li>${t.nombre} — ${t.puntos} puntos</li>`;
+  });
+  html += "</ol>";
+
+  document.body.innerHTML += html;
+}
