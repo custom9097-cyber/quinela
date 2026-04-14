@@ -1,14 +1,56 @@
 [
   {
-    "nombre": "Hugo",
+    "nombre": "Javier",
     "respuestas": {
       "1": ["León"],
-      "2": ["Juárez","Empate"],
+      "2": ["Xolos"],
+      "3": ["Empate", "Necaxa"],
+      "4": ["Chivas"],
+      "5": ["Monterrey"],
+      "6": ["Empate", "Santos"],
+      "7": ["Empate"],
+      "8": ["Empate"],
+      "9": ["Empate"]
+    }
+  },
+  {
+    "nombre": "Alondra",
+    "respuestas": {
+      "1": ["Empate"],
+      "2": ["Empate"],
+      "3": ["Gallos"],
+      "4": ["Chivas"],
+      "5": ["Monterrey"],
+      "6": ["Santos"],
+      "7": ["Empate"],
+      "8": ["Pumas"],
+      "9": ["Toluca", "Empate"]
+    }
+  },
+  {
+    "nombre": "Rodrigo",
+    "respuestas": {
+      "1": ["Puebla"],
+      "2": ["Empate"],
       "3": ["Necaxa"],
       "4": ["Tigres"],
       "5": ["Monterrey"],
-      "6": ["Santos"],
-      "7": ["América"],
+      "6": ["Empate"],
+      "7": ["Empate"],
+      "8": ["Pumas"],
+      "9": ["Toluca"]
+    }
+  },
+  {
+    "nombre": "Marco",
+    "respuestas": {
+      "1": ["Puebla"],
+      "2": ["Xolos"],
+      "3": ["Empate"],
+      "4": ["Tigres"],
+      "5": ["Monterrey"],
+      "6": ["Pachuca"],
+      "7": ["Empate", "Cruz Azul"],
       "8": ["Pumas"],
       "9": ["Toluca"]
     }
