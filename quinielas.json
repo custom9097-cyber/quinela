@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Hugo",
+    "respuestas": {
+      "1": ["León"],
+      "2": ["Juárez","Empate"],
+      "3": ["Necaxa"],
+      "4": ["Tigres"],
+      "5": ["Monterrey"],
+      "6": ["Santos"],
+      "7": ["América"],
+      "8": ["Pumas"],
+      "9": ["Toluca"]
+    }
+  }
+]
