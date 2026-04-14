@@ -75,6 +75,13 @@ function calcularTotal(){
   document.getElementById('total').innerText = total;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("btnTabla");
+  if(btn){
+    btn.addEventListener("click", tablaPosiciones);
+  }
+});
+
 async function tablaPosiciones() {
 
   const q = await fetch('./quinielas.json');
