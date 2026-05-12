@@ -63,10 +63,11 @@ function limpiarSelecciones() {
 }
 
 
-
-
-
-
+function limpiarTodo() {
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.checked = false;
+  });
+}
 
 function aleatorio() {
 
