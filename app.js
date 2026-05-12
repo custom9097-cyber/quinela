@@ -78,6 +78,15 @@ function limpiarSelecciones() {
 }
 
 
+function pintarListaQuinielas(){
+  let contenedor = document.getElementById('listaQuinielas');
+  contenedor.innerHTML = "";
+
+  quinielas.forEach((q, i) => {
+    contenedor.innerHTML += `<pre>Quiniela ${i+1}\n${q}</pre><hr>`;
+  });
+}
+
 function limpiarTodo() {
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
@@ -190,6 +199,8 @@ function agregarQuiniela() {
 
   limpiarChecks();
   document.getElementById('total').innerText = 10;
+
+  pintarListaQuinielas();   // 👈 ESTA ES LA CLAVE
 
   alert('Quiniela agregada ✔️');
 }
