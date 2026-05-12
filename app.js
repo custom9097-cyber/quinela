@@ -223,8 +223,7 @@ function agregarQuiniela() {
   limpiarChecks();
   calcularTotal();
   
-  // 🔴 IMPORTANTE: NO borrar el nombre
-  // document.getElementById('nombre').value = ''; ← ESTA LÍNEA NO DEBE EXISTIR
+  // NO borrar el nombre - el usuario puede seguir agregando más quinielas
   
   pintarListaQuinielas();
 
