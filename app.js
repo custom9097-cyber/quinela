@@ -33,6 +33,7 @@ fetch('./partidos.json')
   });
 
 // ENVIAR POR WHATSAPP
+// ENVIAR POR WHATSAPP (con separador)
 function enviarQuiniela() {
   if(quinielas.length === 0){
     alert("❌ No has agregado quinielas");
@@ -41,16 +42,20 @@ function enviarQuiniela() {
 
   let telefono = "525515112194";
   
-  let mensajeFinal = "*📊 RESUMEN DE QUINIELAS*\n";
-  mensajeFinal += `📝 Total de quinielas: ${quinielas.length}\n`;
-  mensajeFinal += `💰 Total a pagar: $${totalGeneral} pesos\n`;
-  mensajeFinal += `${"═".repeat(30)}\n\n`;
-  mensajeFinal += "*📋 DETALLE DE QUINIELAS:*\n\n";
+  let mensajeFinal = "*📋 DETALLE DE QUINIELAS:*\n\n";
 
   quinielas.forEach((q, index) => {
     mensajeFinal += `*Quiniela ${index + 1}*\n${q}\n`;
     mensajeFinal += "─".repeat(40) + "\n\n";
   });
+
+  // Línea decorativa antes del resumen
+  mensajeFinal += "═".repeat(40) + "\n\n";
+  
+  mensajeFinal += "*📊 RESUMEN FINAL*\n";
+  mensajeFinal += `📝 Total de quinielas: ${quinielas.length}\n`;
+  mensajeFinal += `💰 Total a pagar: $${totalGeneral} pesos\n`;
+  mensajeFinal += "\n✨ ¡Gracias por participar! ✨";
 
   let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeFinal)}`;
   window.open(url, '_blank');
@@ -61,7 +66,7 @@ function enviarQuiniela() {
   totalGeneral = 0;
   actualizarResumen();
   document.getElementById('listaQuinielas').innerHTML = "";
-  document.getElementById('nombre').value = ""; // ← SOLO AQUÍ se borra el nombre (al enviar)
+  document.getElementById('nombre').value = "";
   limpiarChecks();
   calcularTotal();
   
