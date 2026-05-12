@@ -14,8 +14,18 @@ fetch('./partidos.json')
       let div = document.createElement('div');
       div.className = 'partido';
 
+      // Mostrar logos si existen en el JSON
+      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:25px;height:25px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
+      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:25px;height:25px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
+
       div.innerHTML = `
-        <b>${p.local} vs ${p.visitante}</b><br><br>
+        <b>
+          ${localLogo}
+          ${p.local} 
+          vs 
+          ${visitanteLogo}
+          ${p.visitante}
+        </b><br><br>
         <label><input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()"> ${p.local}</label><br>
         <label><input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()"> Empate</label><br>
         <label><input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()"> ${p.visitante}</label>
@@ -33,7 +43,6 @@ fetch('./partidos.json')
   });
 
 // ENVIAR POR WHATSAPP
-// ENVIAR POR WHATSAPP (con separador)
 function enviarQuiniela() {
   if(quinielas.length === 0){
     alert("❌ No has agregado quinielas");
@@ -49,10 +58,11 @@ function enviarQuiniela() {
     mensajeFinal += "─".repeat(40) + "\n\n";
   });
 
-  // Línea decorativa antes del resumen
+  // Separador decorativo
   mensajeFinal += "═".repeat(40) + "\n\n";
   
-  mensajeFinal += "*📊 RESUMEN FINAL*\n";
+  // Resumen al FINAL
+  mensajeFinal += "*📊 RESUMEN DE QUINIELAS*\n";
   mensajeFinal += `📝 Total de quinielas: ${quinielas.length}\n`;
   mensajeFinal += `💰 Total a pagar: $${totalGeneral} pesos\n`;
   mensajeFinal += "\n✨ ¡Gracias por participar! ✨";
