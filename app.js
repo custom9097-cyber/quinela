@@ -1,7 +1,9 @@
 let quinielas = [];
 let contadorQuiniela = 1;
 let partidosData = [];
+let totalGeneral = 0; // Nueva variable para sumar todos los totales
 
+// Cargar los partidos
 fetch('./partidos.json')
   .then(res => res.json())
   .then(data => {
@@ -23,80 +25,78 @@ fetch('./partidos.json')
       contenedor.appendChild(div);
     });
     
-    // Inicializar total después de cargar los partidos
     calcularTotal();
+  })
+  .catch(error => {
+    console.error('Error cargando partidos.json:', error);
+    document.getElementById('partidos').innerHTML = '<p style="color:red">Error: No se pudo cargar partidos.json</p>';
   });
 
+// ENVIAR POR WHATSAPP
 function enviarQuiniela() {
   if(quinielas.length === 0){
-    alert("No has agregado quinielas");
+    alert("❌ No has agregado quinielas");
     return;
   }
 
   let telefono = "525515112194";
-  let mensajeFinal = "*QUINIELAS JORNADA*\n\n";
+  
+  // Crear mensaje con resumen
+  let mensajeFinal = "*📊 RESUMEN DE QUINIELAS*\n";
+  mensajeFinal += `📝 Total de quinielas: ${quinielas.length}\n`;
+  mensajeFinal += `💰 Total a pagar: $${totalGeneral} pesos\n`;
+  mensajeFinal += `${"═".repeat(30)}\n\n`;
+  mensajeFinal += "*📋 DETALLE DE QUINIELAS:*\n\n";
 
-  quinielas.forEach(q => {
-    mensajeFinal += q + "\n";
+  quinielas.forEach((q, index) => {
+    mensajeFinal += `*Quiniela ${index + 1}*\n${q}\n`;
+    mensajeFinal += "─".repeat(40) + "\n\n";
   });
 
   let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeFinal)}`;
   window.open(url, '_blank');
 
-  // reset
+  // Reiniciar todo después de enviar
   quinielas = [];
   contadorQuiniela = 1;
+  totalGeneral = 0;
+  actualizarResumen(); // Actualizar el resumen visual
   document.getElementById('listaQuinielas').innerHTML = "";
+  document.getElementById('nombre').value = "";
   alert('✅ Quinielas enviadas correctamente');
 }
 
-function limpiarSelecciones() {
-  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-    cb.checked = false;
-  });
-  calcularTotal(); // Recalcular el total después de limpiar
-}
-
-function pintarListaQuinielas() {
-  let contenedor = document.getElementById('listaQuinielas');
-  contenedor.innerHTML = "";
-
-  quinielas.forEach((q, i) => {
-    contenedor.innerHTML += `<div><strong>Quiniela ${i+1}</strong><pre style="white-space: pre-wrap;">${q}</pre></div><hr>`;
-  });
-}
-
+// LIMPIAR SOLO SELECCIONES
 function limpiarTodo() {
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
   });
-  calcularTotal(); // Recalcular después de limpiar
-  alert('✅ Todas las selecciones han sido limpiadas');
+  calcularTotal();
+  alert('✅ Selecciones limpiadas');
 }
 
+// LLENADO ALEATORIO
 function aleatorio() {
-  // limpiar checks anteriores
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
   });
 
-  // marcar uno nuevo por partido
   partidosData.forEach(p => {
     let opciones = document.querySelectorAll(`input[name="p${p.id}"]`);
     let random = Math.floor(Math.random() * opciones.length);
     opciones[random].checked = true;
   });
 
-  calcularTotal(); // Recalcular el total después del llenado aleatorio
+  calcularTotal();
   alert('🎲 Quiniela aleatoria generada');
 }
 
+// CALCULAR TOTAL A PAGAR
 function calcularTotal() {
   let totalExtras = 0;
 
   partidosData.forEach(p => {
     let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`).length;
-
     if(seleccionados > 1){
       totalExtras += (seleccionados - 1);
     }
@@ -107,18 +107,122 @@ function calcularTotal() {
   return total;
 }
 
-// Función nueva para limpiar solo los checks (la que estabas usando)
+// FUNCIÓN AUXILIAR PARA LIMPIAR CHECKS
 function limpiarChecks() {
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
   });
 }
 
+// ACTUALIZAR RESUMEN VISUAL (cantidad de quinielas y total general)
+function actualizarResumen() {
+  let resumenDiv = document.getElementById('resumenQuinielas');
+  if(!resumenDiv) {
+    // Crear el div de resumen si no existe
+    let resumen = document.createElement('div');
+    resumen.id = 'resumenQuinielas';
+    resumen.style.cssText = 'background:#e3f2fd;padding:10px;border-radius:8px;margin-bottom:15px;border:1px solid #2196f3';
+    resumen.innerHTML = `
+      <strong>📊 Resumen de quinielas agregadas:</strong><br>
+      📝 Cantidad: <span id="cantidadQuinielas">0</span><br>
+      💰 Total acumulado: $<span id="totalAcumulado">0</span> pesos
+    `;
+    
+    // Insertar después del botón "Limpiar selecciones"
+    const btnLimpiar = document.querySelector('button[onclick="limpiarTodo()"]');
+    if(btnLimpiar && btnLimpiar.parentNode) {
+      btnLimpiar.parentNode.insertBefore(resumen, btnLimpiar.nextSibling);
+    } else {
+      document.querySelector('h3').before(resumen);
+    }
+  }
+  
+  // Actualizar valores
+  document.getElementById('cantidadQuinielas').innerText = quinielas.length;
+  document.getElementById('totalAcumulado').innerText = totalGeneral;
+}
+
+// MOSTRAR LISTA DE QUINIELAS AGREGADAS
+function pintarListaQuinielas() {
+  let contenedor = document.getElementById('listaQuinielas');
+  contenedor.innerHTML = "";
+
+  if(quinielas.length === 0) {
+    contenedor.innerHTML = "<em>No hay quinielas agregadas aún</em>";
+    return;
+  }
+
+  quinielas.forEach((q, i) => {
+    // Extraer el total de cada quiniela (buscar el patrón "Total: $XX")
+    let totalMatch = q.match(/Total: \$(\d+)/);
+    let totalQuiniela = totalMatch ? totalMatch[1] : '?';
+    
+    contenedor.innerHTML += `
+      <div style="background:#f9f9f9;padding:10px;margin-bottom:10px;border-radius:5px;border-left:4px solid #2196f3">
+        <strong>📋 Quiniela ${i+1} - 💰 $${totalQuiniela}</strong>
+        <pre style="white-space: pre-wrap;font-family:Arial;font-size:14px;margin:5px 0">${q}</pre>
+      </div>
+    `;
+  });
+  
+  actualizarResumen();
+}
+
+// AGREGAR QUINIELA A LA LISTA
+function agregarQuiniela() {
+  let nombre = document.getElementById('nombre').value.trim();
+
+  if(!nombre){
+    alert('⚠️ Escribe tu nombre');
+    return;
+  }
+
+  // Verificar que haya al menos una selección
+  let tieneSeleccion = false;
+  partidosData.forEach(p => {
+    if(document.querySelectorAll(`input[name="p${p.id}"]:checked`).length > 0) {
+      tieneSeleccion = true;
+    }
+  });
+
+  if(!tieneSeleccion) {
+    alert('⚠️ Selecciona al menos un resultado en algún partido');
+    return;
+  }
+
+  let totalActual = calcularTotal(); // Obtener el total de esta quiniela
+  let mensaje = `👤 *${nombre}*\n\n`;
+
+  partidosData.forEach(p => {
+    let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`);
+    if(seleccionados.length > 0){
+      let valores = [];
+      seleccionados.forEach(s => valores.push(s.value));
+      mensaje += `⚽ ${p.local} vs ${p.visitante}: ${valores.join(' / ')}\n`;
+    }
+  });
+
+  mensaje += `\n💰 Total: $${totalActual} pesos`;
+
+  quinielas.push(mensaje);
+  totalGeneral += totalActual; // Sumar al total general
+  contadorQuiniela++;
+
+  limpiarChecks();
+  calcularTotal();
+  document.getElementById('nombre').value = '';
+  pintarListaQuinielas();
+
+  alert(`✅ Quiniela agregada correctamente\n📝 Total acumulado: $${totalGeneral}`);
+}
+
+// TABLA DE POSICIONES
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btnTabla");
   if(btn){
     btn.addEventListener("click", tablaPosiciones);
   }
+  actualizarResumen(); // Inicializar resumen
 });
 
 async function tablaPosiciones() {
@@ -133,89 +237,33 @@ async function tablaPosiciones() {
 
     quinielasData.forEach(jugador => {
       let puntos = 0;
-
       resultados.forEach(res => {
         let picks = jugador.respuestas[res.id];
-
         if(picks && picks.includes(res.resultado)){
           puntos++;
         }
       });
-
       tabla.push({ nombre: jugador.nombre, puntos });
     });
 
     tabla.sort((a,b) => b.puntos - a.puntos);
 
-    let html = `
-      <div id="tablaModal" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-      background:white;padding:20px;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);
-      z-index:1000;max-width:400px;width:90%;">
+    let modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:center;justify-content:center';
+    
+    modal.innerHTML = `
+      <div style="background:white;padding:20px;border-radius:8px;max-width:400px;width:90%;max-height:80%;overflow:auto;">
         <h2>📊 Tabla de Posiciones</h2>
-        <ol style="max-height:400px;overflow-y:auto;">
-    `;
-    
-    tabla.forEach(t => {
-      html += `<li><strong>${t.nombre}</strong> — ${t.puntos} puntos</li>`;
-    });
-    
-    html += `
+        <ol style="margin:15px 0">
+          ${tabla.map(t => `<li><strong>${t.nombre}</strong> — ${t.puntos} pts</li>`).join('')}
         </ol>
-        <button onclick="this.parentElement.remove()" style="margin-top:15px;padding:8px;">Cerrar</button>
+        <button onclick="this.closest('div').parentElement.remove()" style="padding:8px 15px">Cerrar</button>
       </div>
-      <div onclick="document.getElementById('tablaModal')?.remove()" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;"></div>
     `;
-
-    document.body.insertAdjacentHTML('beforeend', html);
+    
+    document.body.appendChild(modal);
   } catch(error) {
-    console.error('Error al cargar los archivos:', error);
-    alert('Error al cargar los datos para la tabla de posiciones');
+    console.error('Error:', error);
+    alert('❌ Error al cargar la tabla de posiciones');
   }
-}
-
-function agregarQuiniela() {
-  let nombre = document.getElementById('nombre').value.trim();
-
-  if(!nombre){
-    alert('⚠️ Escribe tu nombre');
-    return;
-  }
-
-  // Verificar que al menos un partido tenga selección
-  let tieneSelecciones = false;
-  partidosData.forEach(p => {
-    let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`);
-    if(seleccionados.length > 0) tieneSelecciones = true;
-  });
-
-  if(!tieneSelecciones) {
-    alert('⚠️ Debes seleccionar al menos un resultado en algún partido');
-    return;
-  }
-
-  let mensaje = `📋 *Quiniela #${contadorQuiniela}*\n👤 Nombre: ${nombre}\n\n`;
-
-  partidosData.forEach(p => {
-    let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`);
-
-    if(seleccionados.length > 0){
-      let valores = [];
-      seleccionados.forEach(s => valores.push(s.value));
-
-      mensaje += `⚽ ${p.local} vs ${p.visitante}: ${valores.join(' / ')}\n`;
-    }
-  });
-
-  let total = document.getElementById('total').innerText;
-  mensaje += `\n💰 Pago total: $${total} pesos\n`;
-
-  quinielas.push(mensaje);
-  contadorQuiniela++;
-
-  limpiarChecks();
-  calcularTotal();
-  document.getElementById('nombre').value = ''; // Limpiar nombre también
-  pintarListaQuinielas();
-
-  alert('✅ Quiniela agregada correctamente');
 }
