@@ -1,13 +1,65 @@
 [
-  { "id": 1, "local": "Puebla", "visitante": "León" },
-  { "id": 2, "local": "Juárez", "visitante": "Xolos" },
-  { "id": 3, "local": "Gallos", "visitante": "Necaxa" },
-  { "id": 4, "local": "Tigres", "visitante": "Chivas" },
-  { "id": 5, "local": "Atlas", "visitante": "Monterrey" },
-  { "id": 6, "local": "Pachuca", "visitante": "Santos" },
-  { "id": 7, "local": "América", "visitante": "Cruz Azul" },
-  { "id": 8, "local": "Pumas", "visitante": "Mazatlán" },
-  { "id": 9, "local": "Toluca", "visitante": "San Luis" }
+  { 
+    "id": 1, 
+    "local": "Puebla", 
+    "localImg": "ligamx/puebla.png",
+    "visitante": "León", 
+    "visitanteImg": "ligamx/leon.png"
+  },
+  { 
+    "id": 2, 
+    "local": "Juárez", 
+    "localImg": "ligamx/juez.png",
+    "visitante": "Xolos", 
+    "visitanteImg": "ligamx/tijuana.png"
+  },
+  { 
+    "id": 3, 
+    "local": "Gallos", 
+    "localImg": "ligamx/quertaro.png",
+    "visitante": "Necaxa", 
+    "visitanteImg": "ligamx/necaa.png"
+  },
+  { 
+    "id": 4, 
+    "local": "Tigres", 
+    "localImg": "ligamx/tigres.png",
+    "visitante": "Chivas", 
+    "visitanteImg": "ligamx/guadalajara.png"
+  },
+  { 
+    "id": 5, 
+    "local": "Atlas", 
+    "localImg": "ligamx/atlas.png",
+    "visitante": "Monterrey", 
+    "visitanteImg": "ligamx/monterrey.png"
+  },
+  { 
+    "id": 6, 
+    "local": "Pachuca", 
+    "localImg": "ligamx/pachuca.png",
+    "visitante": "Santos", 
+    "visitanteImg": "ligamx/santos.png"
+  },
+  { 
+    "id": 7, 
+    "local": "América", 
+    "localImg": "ligamx/america.png",
+    "visitante": "Cruz Azul", 
+    "visitanteImg": "ligamx/cruzazul.png"
+  },
+  { 
+    "id": 8, 
+    "local": "Pumas", 
+    "localImg": "ligamx/pumas.png",
+    "visitante": "Mazatlán", 
+    "visitanteImg": "ligamx/mazatlán.png"
+  },
+  { 
+    "id": 9, 
+    "local": "Toluca", 
+    "localImg": "ligamx/toluca.png",
+    "visitante": "San Luis", 
+    "visitanteImg": "ligamx/atleticosl.png"
+  }
 ]
-
-
