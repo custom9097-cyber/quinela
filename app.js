@@ -61,7 +61,7 @@ function enviarQuiniela() {
   totalGeneral = 0;
   actualizarResumen();
   document.getElementById('listaQuinielas').innerHTML = "";
-  document.getElementById('nombre').value = "";
+  document.getElementById('nombre').value = ""; // ← SOLO AQUÍ se borra el nombre (al enviar)
   limpiarChecks();
   calcularTotal();
   
@@ -208,7 +208,8 @@ function agregarQuiniela() {
   limpiarChecks();
   calcularTotal();
   
-  // NO borramos el nombre - el usuario puede seguir agregando más quinielas
+  // 🔴 IMPORTANTE: NO borrar el nombre
+  // document.getElementById('nombre').value = ''; ← ESTA LÍNEA NO DEBE EXISTIR
   
   pintarListaQuinielas();
 
