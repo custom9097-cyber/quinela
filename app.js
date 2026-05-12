@@ -15,8 +15,8 @@ fetch('./partidos.json')
       div.className = 'partido';
 
       // Mostrar logos si existen en el JSON
-      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:25px;height:25px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
-      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:25px;height:25px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
+      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
+      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
 
       div.innerHTML = `
         <b>
