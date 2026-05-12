@@ -1,7 +1,7 @@
 let quinielas = [];
 let contadorQuiniela = 1;
 let partidosData = [];
-let totalGeneral = 0; // Nueva variable para sumar todos los totales
+let totalGeneral = 0;
 
 // Cargar los partidos
 fetch('./partidos.json')
@@ -41,7 +41,6 @@ function enviarQuiniela() {
 
   let telefono = "525515112194";
   
-  // Crear mensaje con resumen
   let mensajeFinal = "*📊 RESUMEN DE QUINIELAS*\n";
   mensajeFinal += `📝 Total de quinielas: ${quinielas.length}\n`;
   mensajeFinal += `💰 Total a pagar: $${totalGeneral} pesos\n`;
@@ -60,9 +59,12 @@ function enviarQuiniela() {
   quinielas = [];
   contadorQuiniela = 1;
   totalGeneral = 0;
-  actualizarResumen(); // Actualizar el resumen visual
+  actualizarResumen();
   document.getElementById('listaQuinielas').innerHTML = "";
   document.getElementById('nombre').value = "";
+  limpiarChecks();
+  calcularTotal();
+  
   alert('✅ Quinielas enviadas correctamente');
 }
 
@@ -114,21 +116,19 @@ function limpiarChecks() {
   });
 }
 
-// ACTUALIZAR RESUMEN VISUAL (cantidad de quinielas y total general)
+// ACTUALIZAR RESUMEN VISUAL
 function actualizarResumen() {
   let resumenDiv = document.getElementById('resumenQuinielas');
   if(!resumenDiv) {
-    // Crear el div de resumen si no existe
     let resumen = document.createElement('div');
     resumen.id = 'resumenQuinielas';
-    resumen.style.cssText = 'background:#e3f2fd;padding:10px;border-radius:8px;margin-bottom:15px;border:1px solid #2196f3';
+    resumen.style.cssText = 'background:#e3f2fd;padding:15px;border-radius:8px;margin:15px 0;border-left:4px solid #2196f3;font-size:16px';
     resumen.innerHTML = `
       <strong>📊 Resumen de quinielas agregadas:</strong><br>
       📝 Cantidad: <span id="cantidadQuinielas">0</span><br>
       💰 Total acumulado: $<span id="totalAcumulado">0</span> pesos
     `;
     
-    // Insertar después del botón "Limpiar selecciones"
     const btnLimpiar = document.querySelector('button[onclick="limpiarTodo()"]');
     if(btnLimpiar && btnLimpiar.parentNode) {
       btnLimpiar.parentNode.insertBefore(resumen, btnLimpiar.nextSibling);
@@ -137,7 +137,6 @@ function actualizarResumen() {
     }
   }
   
-  // Actualizar valores
   document.getElementById('cantidadQuinielas').innerText = quinielas.length;
   document.getElementById('totalAcumulado').innerText = totalGeneral;
 }
@@ -153,7 +152,6 @@ function pintarListaQuinielas() {
   }
 
   quinielas.forEach((q, i) => {
-    // Extraer el total de cada quiniela (buscar el patrón "Total: $XX")
     let totalMatch = q.match(/Total: \$(\d+)/);
     let totalQuiniela = totalMatch ? totalMatch[1] : '?';
     
@@ -177,7 +175,6 @@ function agregarQuiniela() {
     return;
   }
 
-  // Verificar que haya al menos una selección
   let tieneSeleccion = false;
   partidosData.forEach(p => {
     if(document.querySelectorAll(`input[name="p${p.id}"]:checked`).length > 0) {
@@ -190,7 +187,7 @@ function agregarQuiniela() {
     return;
   }
 
-  let totalActual = calcularTotal(); // Obtener el total de esta quiniela
+  let totalActual = calcularTotal();
   let mensaje = `👤 *${nombre}*\n\n`;
 
   partidosData.forEach(p => {
@@ -205,12 +202,14 @@ function agregarQuiniela() {
   mensaje += `\n💰 Total: $${totalActual} pesos`;
 
   quinielas.push(mensaje);
-  totalGeneral += totalActual; // Sumar al total general
+  totalGeneral += totalActual;
   contadorQuiniela++;
 
   limpiarChecks();
   calcularTotal();
-  document.getElementById('nombre').value = '';
+  
+  // NO borramos el nombre - el usuario puede seguir agregando más quinielas
+  
   pintarListaQuinielas();
 
   alert(`✅ Quiniela agregada correctamente\n📝 Total acumulado: $${totalGeneral}`);
@@ -222,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(btn){
     btn.addEventListener("click", tablaPosiciones);
   }
-  actualizarResumen(); // Inicializar resumen
+  actualizarResumen();
 });
 
 async function tablaPosiciones() {
