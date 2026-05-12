@@ -1,3 +1,5 @@
+let quinielas = [];
+let contadorQuiniela = 1;
 let partidosData = [];
 
 fetch('./partidos.json')
@@ -22,36 +24,49 @@ fetch('./partidos.json')
     });
   });
 
-function enviarQuiniela() {
-  let nombre = document.getElementById('nombre').value.trim();
 
-  if(!nombre){
-    alert('Escribe tu nombre');
+  function enviarQuiniela(){
+
+  if(quinielas.length === 0){
+    return alert("No has agregado quinielas");
+  }
+
+  let mensajeFinal = "*QUINIELAS JORNADA*\n";
+
+  quinielas.forEach(q => {
+    mensajeFinal += q + "\n";
+  });
+
+  let url = "https://wa.me/?text=" + encodeURIComponent(mensajeFinal);
+  window.open(url, '_blank');
+
+  // reset
+  quinielas = [];
+  contadorQuiniela = 1;
+}
+
+function enviarQuiniela() {
+
+  if(quinielas.length === 0){
+    alert("No has agregado quinielas");
     return;
   }
 
-  let mensaje = `*Quiniela Jornada*\nNombre: ${nombre}\n\n`;
+  let telefono = "525515112194";
 
-partidosData.forEach(p => {
-  let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`);
+  let mensajeFinal = "*QUINIELAS JORNADA*\n\n";
 
-  if(seleccionados.length > 0){
-    let valores = [];
-    seleccionados.forEach(s => valores.push(s.value));
+  quinielas.forEach(q => {
+    mensajeFinal += q + "\n";
+  });
 
-    mensaje += `Partido ${p.id} (${p.local} vs ${p.visitante}): ${valores.join(' / ')}\n`;
-  }
-});
-
- let total = document.getElementById('total').innerText;
-mensaje += `\nPago total: $${total} pesos`
-
-  let telefono = "525515112194"; // cambia por tu numero
-  let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-
+  let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeFinal)}`;
   window.open(url, '_blank');
-}
 
+  // reset
+  quinielas = [];
+  contadorQuiniela = 1;
+}
 
 function limpiarSelecciones() {
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
@@ -140,4 +155,41 @@ async function tablaPosiciones() {
   html += "</ol>";
 
   document.body.innerHTML += html;
+}
+
+
+
+function agregarQuiniela() {
+
+  let nombre = document.getElementById('nombre').value.trim();
+
+  if(!nombre){
+    alert('Escribe tu nombre');
+    return;
+  }
+
+  let mensaje = `*Quiniela #${contadorQuiniela}*\nNombre: ${nombre}\n\n`;
+
+  partidosData.forEach(p => {
+    let seleccionados = document.querySelectorAll(`input[name="p${p.id}"]:checked`);
+
+    if(seleccionados.length > 0){
+      let valores = [];
+      seleccionados.forEach(s => valores.push(s.value));
+
+      mensaje += `Partido ${p.id} (${p.local} vs ${p.visitante}): ${valores.join(' / ')}\n`;
+    }
+  });
+
+  let total = document.getElementById('total').innerText;
+  mensaje += `\nPago total: $${total} pesos\n`;
+
+  // 🔴 EN VEZ DE ENVIAR → GUARDAR
+  quinielas.push(mensaje);
+  contadorQuiniela++;
+
+  limpiarChecks();
+  document.getElementById('total').innerText = 10;
+
+  alert('Quiniela agregada ✔️');
 }
