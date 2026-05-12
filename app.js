@@ -52,12 +52,36 @@ mensaje += `\nPago total: $${total} pesos`
   window.open(url, '_blank');
 }
 
+
+function limpiarSelecciones() {
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+    });
+
+    // MUY IMPORTANTE: limpiar el objeto en memoria
+    quinielaActual = {};
+}
+
+
+
+
+
+
+
 function aleatorio() {
+
+  // limpiar checks anteriores
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.checked = false;
+  });
+
+  // marcar uno nuevo por partido
   partidosData.forEach(p => {
     let opciones = document.querySelectorAll(`input[name="p${p.id}"]`);
     let random = Math.floor(Math.random() * opciones.length);
     opciones[random].checked = true;
   });
+
 }
 
 function calcularTotal(){
