@@ -18,34 +18,36 @@ fetch('./partidos.json')
       let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
       let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
 
-     div.innerHTML = `
-  <div style="text-align:center;margin-bottom:15px;padding:10px;background:#f5f5f5;border-radius:8px;">
-    <span style="display:inline-flex;align-items:center;gap:10px;">
+    div.innerHTML = `
+  <div style="text-align:center;margin-bottom:15px;padding:8px;background:#f5f5f5;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;">
+    <span style="display:inline-flex;align-items:center;gap:8px;">
       ${localLogo}
-      <strong style="font-size:16px;">${p.local}</strong>
-      <span style="margin:0 15px;font-size:18px;color:#666;">⚽ VS ⚽</span>
-      <strong style="font-size:16px;">${p.visitante}</strong>
+      <strong style="font-size:14px;">${p.local}</strong>
+    </span>
+    
+    <span style="font-size:14px;color:#999;">VS</span>
+    
+    <span style="display:inline-flex;align-items:center;gap:8px;">
+      <strong style="font-size:14px;">${p.visitante}</strong>
       ${visitanteLogo}
     </span>
   </div>
   
-  <div style="display:flex;gap:25px;justify-content:center;flex-wrap:wrap;">
-    <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;padding:5px 10px;border-radius:20px;background:#e8f5e9;">
-      <input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()">
+  <div style="display:flex;gap:15px;justify-content:center;align-items:center;flex-wrap:wrap;">
+    <label style="display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:10px 15px;background:#e8f5e9;border-radius:12px;">
+      <input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()" style="width:16px;height:16px">
       ${localLogo}
-      <span>${p.local}</span>
     </label>
     
-    <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;padding:5px 10px;border-radius:20px;background:#fff3e0;">
-      <input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()">
-      <span>🤝</span>
-      <span>Empate</span>
+    <label style="display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:10px 15px;background:#fff3e0;border-radius:12px;">
+      <input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()" style="width:16px;height:16px">
+      <span style="font-size:28px;">🤝</span>
+      <span style="font-size:11px;">Empate</span>
     </label>
     
-    <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;padding:5px 10px;border-radius:20px;background:#e8f5e9;">
-      <input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()">
+    <label style="display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:10px 15px;background:#e8f5e9;border-radius:12px;">
+      <input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()" style="width:16px;height:16px">
       ${visitanteLogo}
-      <span>${p.visitante}</span>
     </label>
   </div>
   <hr>
