@@ -13,38 +13,57 @@ fetch('./partidos.json')
     data.forEach(p => {
       let div = document.createElement('div');
       div.className = 'partido';
+      div.style.marginBottom = '15px';
+      div.style.padding = '8px';
+      div.style.border = '1px solid #ddd';
+      div.style.borderRadius = '12px';
+      div.style.background = '#f5f5f5';
 
-      // Mostrar logos si existen en el JSON
-      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
-      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
+      // Logos más pequeños para celular
+      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:25px;height:25px;object-fit:contain" onerror="this.style.display='none'">` : '⚽';
+      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:25px;height:25px;object-fit:contain" onerror="this.style.display='none'">` : '⚽';
 
-div.innerHTML = `
-  <div style="margin-bottom:12px;background:white;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.1);padding:12px;">
-    <div style="display:flex;justify-content:space-around;align-items:center;">
-      
-      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 15px;border-radius:8px;transition:background 0.2s;" 
-             onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
-        <input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()">
-        ${localLogo}
-        <span style="font-size:14px;">${p.local}</span>
-      </label>
-      
-      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;padding:10px 15px;border-radius:8px;transition:background 0.2s;"
-             onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
-        <input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()">
-        <span style="font-size:24px;">🤝</span>
-      </label>
-      
-      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 15px;border-radius:8px;transition:background 0.2s;"
-             onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='transparent'">
-        <input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()">
-        <span style="font-size:14px;">${p.visitante}</span>
-        ${visitanteLogo}
-      </label>
-      
-    </div>
-  </div>
-`;
+      div.innerHTML = `
+        <!-- TÍTULO DEL PARTIDO -->
+        <div style="text-align:center;margin-bottom:10px;padding:6px;background:white;border-radius:8px;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;">
+            ${localLogo}
+            <strong style="font-size:13px;">${p.local}</strong>
+            <span style="color:#999;font-size:12px;">VS</span>
+            <strong style="font-size:13px;">${p.visitante}</strong>
+            ${visitanteLogo}
+          </div>
+        </div>
+        
+        <!-- RECUADRO BLANCO CON CHECKBOXES -->
+        <div style="background:white;border-radius:10px;padding:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:5px;">
+            
+            <!-- LOCAL -->
+            <label style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px;border-radius:8px;flex:1;text-align:center;">
+              <input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()" style="width:16px;height:16px">
+              ${localLogo}
+              <span style="font-size:10px;">${p.local}</span>
+            </label>
+            
+            <!-- EMPATE -->
+            <label style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px;border-radius:8px;flex:1;text-align:center;">
+              <input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()" style="width:16px;height:16px">
+              <span style="font-size:22px;">🤝</span>
+              <span style="font-size:10px;">Empate</span>
+            </label>
+            
+            <!-- VISITANTE -->
+            <label style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px;border-radius:8px;flex:1;text-align:center;">
+              <input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()" style="width:16px;height:16px">
+              ${visitanteLogo}
+              <span style="font-size:10px;">${p.visitante}</span>
+            </label>
+            
+          </div>
+        </div>
+      `;
+
       contenedor.appendChild(div);
     });
     
@@ -71,10 +90,7 @@ function enviarQuiniela() {
     mensajeFinal += "─".repeat(40) + "\n\n";
   });
 
-  // Separador decorativo
   mensajeFinal += "═".repeat(40) + "\n\n";
-  
-  // Resumen al FINAL
   mensajeFinal += "*📊 RESUMEN DE QUINIELAS*\n";
   mensajeFinal += `📝 Total de quinielas: ${quinielas.length}\n`;
   mensajeFinal += `💰 Total a pagar: $${totalGeneral} pesos\n`;
@@ -83,7 +99,6 @@ function enviarQuiniela() {
   let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeFinal)}`;
   window.open(url, '_blank');
 
-  // Reiniciar todo después de enviar
   quinielas = [];
   contadorQuiniela = 1;
   totalGeneral = 0;
@@ -96,7 +111,6 @@ function enviarQuiniela() {
   alert('✅ Quinielas enviadas correctamente');
 }
 
-// LIMPIAR SOLO SELECCIONES
 function limpiarTodo() {
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
@@ -105,7 +119,6 @@ function limpiarTodo() {
   alert('✅ Selecciones limpiadas');
 }
 
-// LLENADO ALEATORIO
 function aleatorio() {
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
@@ -121,7 +134,6 @@ function aleatorio() {
   alert('🎲 Quiniela aleatoria generada');
 }
 
-// CALCULAR TOTAL A PAGAR
 function calcularTotal() {
   let totalExtras = 0;
 
@@ -137,20 +149,18 @@ function calcularTotal() {
   return total;
 }
 
-// FUNCIÓN AUXILIAR PARA LIMPIAR CHECKS
 function limpiarChecks() {
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
   });
 }
 
-// ACTUALIZAR RESUMEN VISUAL
 function actualizarResumen() {
   let resumenDiv = document.getElementById('resumenQuinielas');
   if(!resumenDiv) {
     let resumen = document.createElement('div');
     resumen.id = 'resumenQuinielas';
-    resumen.style.cssText = 'background:#e3f2fd;padding:15px;border-radius:8px;margin:15px 0;border-left:4px solid #2196f3;font-size:16px';
+    resumen.style.cssText = 'background:#e3f2fd;padding:15px;border-radius:8px;margin:15px 0;border-left:4px solid #2196f3;font-size:14px';
     resumen.innerHTML = `
       <strong>📊 Resumen de quinielas agregadas:</strong><br>
       📝 Cantidad: <span id="cantidadQuinielas">0</span><br>
@@ -169,7 +179,6 @@ function actualizarResumen() {
   document.getElementById('totalAcumulado').innerText = totalGeneral;
 }
 
-// MOSTRAR LISTA DE QUINIELAS AGREGADAS
 function pintarListaQuinielas() {
   let contenedor = document.getElementById('listaQuinielas');
   contenedor.innerHTML = "";
@@ -186,7 +195,7 @@ function pintarListaQuinielas() {
     contenedor.innerHTML += `
       <div style="background:#f9f9f9;padding:10px;margin-bottom:10px;border-radius:5px;border-left:4px solid #2196f3">
         <strong>📋 Quiniela ${i+1} - 💰 $${totalQuiniela}</strong>
-        <pre style="white-space: pre-wrap;font-family:Arial;font-size:14px;margin:5px 0">${q}</pre>
+        <pre style="white-space: pre-wrap;font-family:Arial;font-size:12px;margin:5px 0">${q}</pre>
       </div>
     `;
   });
@@ -194,7 +203,6 @@ function pintarListaQuinielas() {
   actualizarResumen();
 }
 
-// AGREGAR QUINIELA A LA LISTA
 function agregarQuiniela() {
   let nombre = document.getElementById('nombre').value.trim();
 
@@ -236,14 +244,11 @@ function agregarQuiniela() {
   limpiarChecks();
   calcularTotal();
   
-  // NO borrar el nombre - el usuario puede seguir agregando más quinielas
-  
   pintarListaQuinielas();
 
   alert(`✅ Quiniela agregada correctamente\n📝 Total acumulado: $${totalGeneral}`);
 }
 
-// TABLA DE POSICIONES
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btnTabla");
   if(btn){
