@@ -19,31 +19,29 @@ fetch('./partidos.json')
       let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:50px;height:50px;vertical-align:middle;margin-right:5px" onerror="this.style.display='none'">` : '⚽';
 
 div.innerHTML = `
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:8px;background:#fafafa;border-radius:8px;">
-    <div style="display:flex;align-items:center;gap:6px;">
-      ${localLogo}
-      <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:5px;padding:10px 5px;border-bottom:1px solid #eee;">
+    <div style="display:flex;align-items:center;gap:4px;">
+      <label style="cursor:pointer;">
         <input type="checkbox" name="p${p.id}" value="${p.local}" onchange="calcularTotal()">
-        <span style="font-size:13px;font-weight:500;">${p.local}</span>
       </label>
+      ${localLogo}
+      <span style="font-size:14px;">${p.local}</span>
     </div>
     
-    <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;">
+    <label style="cursor:pointer;">
       <input type="checkbox" name="p${p.id}" value="Empate" onchange="calcularTotal()">
-      <span style="font-size:22px;">🤝</span>
+      <span style="font-size:20px;">🤝</span>
     </label>
     
-    <div style="display:flex;align-items:center;gap:6px;">
-      <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;">
-        <input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()">
-        <span style="font-size:13px;font-weight:500;">${p.visitante}</span>
-      </label>
+    <div style="display:flex;align-items:center;gap:4px;">
+      <span style="font-size:14px;">${p.visitante}</span>
       ${visitanteLogo}
+      <label style="cursor:pointer;">
+        <input type="checkbox" name="p${p.id}" value="${p.visitante}" onchange="calcularTotal()">
+      </label>
     </div>
   </div>
-  <hr>
 `;
-
       contenedor.appendChild(div);
     });
     
