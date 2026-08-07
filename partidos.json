@@ -1,65 +1,164 @@
 [
-  { 
-    "id": 1, 
-    "local": "Puebla", 
-    "localImg": "ligamx/puebla.png",
-    "visitante": "León", 
-    "visitanteImg": "ligamx/leon.png"
+  {
+    "id": 1,
+    "dia": "Viernes 7 de agosto",
+    "hora": "17:30",
+    "local": "Charlotte",
+    "localImg": "mls/charlotte.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 2, 
-    "local": "Juárez", 
-    "localImg": "ligamx/juarez.png",
-    "visitante": "Xolos", 
-    "visitanteImg": "ligamx/tijuana.png"
+  {
+    "id": 2,
+    "dia": "Viernes 7 de agosto",
+    "hora": "17:30",
+    "local": "Columbus",
+    "localImg": "mls/columbus.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 3, 
-    "local": "Gallos", 
-    "localImg": "ligamx/quertaro.png",
-    "visitante": "Necaxa", 
-    "visitanteImg": "ligamx/necaa.png"
+  {
+    "id": 3,
+    "dia": "Viernes 7 de agosto",
+    "hora": "18:00",
+    "local": "Cincinnati",
+    "localImg": "mls/cincinnati.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 4, 
-    "local": "Tigres", 
+  {
+    "id": 4,
+    "dia": "Viernes 7 de agosto",
+    "hora": "19:00",
+    "local": "Tigres",
     "localImg": "ligamx/tigres.png",
-    "visitante": "Chivas", 
-    "visitanteImg": "ligamx/guadalajara.png"
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 5, 
-    "local": "Atlas", 
-    "localImg": "ligamx/atlas.png",
-    "visitante": "Monterrey", 
-    "visitanteImg": "ligamx/monterrey.png"
+  {
+    "id": 5,
+    "dia": "Viernes 7 de agosto",
+    "hora": "20:30",
+    "local": "Vancouver",
+    "localImg": "mls/vancouver.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 6, 
-    "local": "Pachuca", 
-    "localImg": "ligamx/pachuca.png",
-    "visitante": "Santos", 
-    "visitanteImg": "ligamx/santos.png"
+  {
+    "id": 6,
+    "dia": "Sábado 8 de agosto",
+    "hora": "18:00",
+    "local": "Inter Miami",
+    "localImg": "mls/intermiami.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 7, 
-    "local": "América", 
-    "localImg": "ligamx/america.png",
-    "visitante": "Cruz Azul", 
-    "visitanteImg": "ligamx/cruzazul.png"
+  {
+    "id": 7,
+    "dia": "Sábado 8 de agosto",
+    "hora": "19:00",
+    "local": "Chivas",
+    "localImg": "ligamx/guadalajara.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 8, 
-    "local": "Pumas", 
-    "localImg": "ligamx/pumas.png",
-    "visitante": "Mazatlán", 
-    "visitanteImg": "ligamx/mazatlán.png"
+  {
+    "id": 8,
+    "dia": "Sábado 8 de agosto",
+    "hora": "20:00",
+    "local": "Real Salt Lake",
+    "localImg": "mls/rsl.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   },
-  { 
-    "id": 9, 
-    "local": "Toluca", 
+  {
+    "id": 9,
+    "dia": "Sábado 8 de agosto",
+    "hora": "20:30",
+    "local": "Orlando City",
+    "localImg": "mls/orlando.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 10,
+    "dia": "Sábado 8 de agosto",
+    "hora": "21:10",
+    "local": "Toluca",
     "localImg": "ligamx/toluca.png",
-    "visitante": "San Luis", 
-    "visitanteImg": "ligamx/atleticosl.png"
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 11,
+    "dia": "Domingo 9 de agosto",
+    "hora": "13:30",
+    "local": "Seattle Sounders",
+    "localImg": "mls/seattle.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 12,
+    "dia": "Domingo 9 de agosto",
+    "hora": "17:30",
+    "local": "Philadelphia Union",
+    "localImg": "mls/philly.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 13,
+    "dia": "Domingo 9 de agosto",
+    "hora": "17:30",
+    "local": "Cruz Azul",
+    "localImg": "ligamx/cruzazul.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 14,
+    "dia": "Domingo 9 de agosto",
+    "hora": "18:00",
+    "local": "Chicago Fire",
+    "localImg": "mls/chicago.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 15,
+    "dia": "Domingo 9 de agosto",
+    "hora": "18:00",
+    "local": "Nashville SC",
+    "localImg": "mls/nashville.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 16,
+    "dia": "Domingo 9 de agosto",
+    "hora": "19:00",
+    "local": "Austin FC",
+    "localImg": "mls/austin.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 17,
+    "dia": "Domingo 9 de agosto",
+    "hora": "20:00",
+    "local": "San Diego FC",
+    "localImg": "mls/sandiego.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
+  },
+  {
+    "id": 18,
+    "dia": "Domingo 9 de agosto",
+    "hora": "20:15",
+    "local": "América",
+    "localImg": "ligamx/america.png",
+    "visitante": "Por definir",
+    "visitanteImg": "mls/placeholder.png"
   }
 ]
