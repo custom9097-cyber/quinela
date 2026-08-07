@@ -81,7 +81,7 @@ function enviarQuiniela() {
     return;
   }
 
-  let telefono = "525515112194";
+  let telefono = "525635407774";
   
   let mensajeFinal = "*📋 DETALLE DE QUINIELAS:*\n\n";
 
