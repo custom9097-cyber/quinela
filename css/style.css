@@ -1,24 +1,62 @@
-body{
-font-family:Arial;
-max-width:700px;
-margin:auto;
-padding:20px;
-text-align:center;
-}
-
-input,select,button{
-width:100%;
-padding:10px;
-margin:5px 0;
-}
-
 .partido{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin:10px 0;
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
 }
 
-img{
-width:40px;
+.partido:hover{
+    box-shadow:0 6px 20px rgba(0,0,0,.10);
+}
+
+.encabezado{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.encabezado img{
+    width:28px;
+    height:28px;
+    vertical-align:middle;
+}
+
+.vs{
+    color:#2563eb;
+    font-weight:800;
+}
+
+.opciones{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+    text-align:center;
+}
+
+.opciones label{
+    padding:15px 10px;
+    border-radius:12px;
+    background:#f8fafc;
+    cursor:pointer;
+    transition:.3s;
+    border:2px solid transparent;
+}
+
+.opciones label:hover{
+    background:#dbeafe;
+    border-color:#2563eb;
+}
+
+.opciones input{
+    width:22px;
+    height:22px;
+}
+
+.nombre-opcion{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:600;
 }
