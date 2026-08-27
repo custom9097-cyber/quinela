@@ -4,38 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiniela Jornada</title>
-<style>
-body{font-family:Arial,Helvetica,sans-serif;max-width:800px;margin:auto;padding:20px}
-h2{text-align:center}
-.partido{border:1px solid #ccc;padding:10px;margin-bottom:10px;border-radius:8px}
-button{padding:10px 15px;font-size:16px;border-radius:6px;cursor:pointer}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Quiniela Jornada</h2>
+<div class="container">
+
+<h2>⚽ Quiniela</h2>
+<p class="subtitulo">Jornada 6 · Liga MX Apertura 2026</p>
 
 <div id="partidos"></div>
 
 <br>
-<label>Nombre:</label>
-<input type="text" id="nombre" style="width:100%;padding:8px">
+<label style="color:#94a3b8;font-weight:600;">✏️ Tu nombre:</label>
+<input type="text" id="nombre" placeholder="Escribe tu nombre...">
 
 <br><br>
-<button onclick="aleatorio()">Llenar Quiniela Aleatoria</button>
-<br><br>
-<button onclick="limpiarTodo()">Limpiar selecciones</button>
-<br><br>
-<h3>Total a pagar: $<span id="total">10</span> pesos</h3>
-<h3>Quinielas agregadas:</h3>
-<div id="listaQuinielas" style="border:1px solid #ccc;padding:10px;border-radius:8px"></div>
-<br>
 
-<button id="btnTabla">Ver Tabla de Posiciones</button>
-<br><br>
-<button onclick="agregarQuiniela()">Agregar Quiniela</button>
-<br><br>
-<button onclick="enviarQuiniela()">Enviar TODAS por WhatsApp</button>
+<div class="grupo-botones">
+    <button class="btn-verde" onclick="aleatorio()">🎲 Llenar Aleatoria</button>
+    <button class="btn-rojo" onclick="limpiarTodo()">🗑️ Limpiar selecciones</button>
+</div>
+
+<h3>💰 Total a pagar: $<span id="total">10</span> MXN</h3>
+
+<h3 style="margin-top:25px;">📋 Quinielas agregadas:</h3>
+<div id="listaQuinielas"></div>
+
+<div class="grupo-botones">
+    <button class="btn-azul" onclick="agregarQuiniela()">➕ Agregar Quiniela</button>
+    <button id="btnTabla" class="btn-morado" onclick="mostrarTabla()">📊 Ver Tabla</button>
+    <button class="btn-whatsapp" onclick="enviarQuiniela()">📱 Enviar por WhatsApp</button>
+</div>
+
+</div>
 
 <script src="app.js"></script>
 </body>
