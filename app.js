@@ -20,8 +20,8 @@ fetch('./partidos.json')
       div.style.background = '#f5f5f5';
 
       // Logos más pequeños para celular
-      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:100px;height:100px;object-fit:contain" onerror="this.style.display='none'">` : '⚽';
-      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:100px;height:100px;object-fit:contain" onerror="this.style.display='none'">` : '⚽';
+      let localLogo = p.localImg ? `<img src="${p.localImg}" style="width:70px;height:70px;object-fit:contain" onerror="this.style.display='none'">` : '⚽';
+      let visitanteLogo = p.visitanteImg ? `<img src="${p.visitanteImg}" style="width:70px;height:70px;object-fit:contain" onerror="this.style.display='none'">` : '⚽';
 
       div.innerHTML = `
         <!-- TÍTULO DEL PARTIDO -->
