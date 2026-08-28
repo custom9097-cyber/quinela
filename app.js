@@ -160,11 +160,11 @@ function actualizarResumen() {
   if(!resumenDiv) {
     let resumen = document.createElement('div');
     resumen.id = 'resumenQuinielas';
-    resumen.style.cssText = 'background:#e3f2fd;padding:15px;border-radius:8px;margin:15px 0;border-left:4px solid #2196f3;font-size:14px';
+    resumen.style.cssText = 'background:#1e293b;padding:15px;border-radius:12px;margin:15px 0;border-left:4px solid #3b82f6;font-size:14px;color:#ffffff;';
     resumen.innerHTML = `
-      <strong>📊 Resumen de quinielas agregadas:</strong><br>
-      📝 Cantidad: <span id="cantidadQuinielas">0</span><br>
-      💰 Total acumulado: $<span id="totalAcumulado">0</span> pesos
+      <strong style="color:#60a5fa;display:block;margin-bottom:8px;font-size:15px;">📊 Resumen de quinielas agregadas:</strong>
+      <span style="color:#e2e8f0;">📝 Cantidad: <span id="cantidadQuinielas" style="color:#facc15;font-weight:bold;">0</span></span><br>
+      <span style="color:#e2e8f0;">💰 Total acumulado: $<span id="totalAcumulado" style="color:#facc15;font-weight:bold;">0</span> pesos</span>
     `;
     
     const btnLimpiar = document.querySelector('button[onclick="limpiarTodo()"]');
