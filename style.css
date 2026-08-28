@@ -431,3 +431,91 @@ h3 span {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+/* ===== LOGO CON ANIMACIÓN ===== */
+.logo-container {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.logo-animado {
+    width: 220px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 8px 40px rgba(250, 204, 21, 0.3);
+    animation: flotar 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.logo-animado:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 60px rgba(250, 204, 21, 0.5);
+}
+
+/* Animación de flotación */
+@keyframes flotar {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Resplandor pulsante detrás del logo */
+.logo-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.3) 0%, transparent 70%);
+    animation: brillar 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes brillar {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Responsive para celular */
+@media (max-width: 600px) {
+    .logo-animado {
+        width: 160px;
+    }
+    
+    .logo-container::before {
+        width: 180px;
+        height: 180px;
+    }
+
+.logo-animado {
+    animation: aparecer 1s ease-out forwards, flotar 3s ease-in-out infinite 1s;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+}
