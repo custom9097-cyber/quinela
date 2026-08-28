@@ -58,15 +58,15 @@ h2 {
     padding-bottom: 15px;
 }
 
-/* ===== PARTIDO ===== */
+/* ===== PARTIDO (sobreescribe los estilos inline) ===== */
 .partido {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.06) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 20px 24px;
-    margin-bottom: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px !important;
+    padding: 20px 24px !important;
+    margin-bottom: 18px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
@@ -74,126 +74,128 @@ h2 {
 .partido:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
-    border-color: rgba(96, 165, 250, 0.3);
-    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(96, 165, 250, 0.3) !important;
+    background: rgba(255, 255, 255, 0.09) !important;
 }
 
 /* ===== ENCABEZADO DEL PARTIDO ===== */
-.encabezado {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #e2e8f0;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
+/* El HTML tiene: <div style="text-align:center;margin-bottom:10px;padding:6px;background:white;border-radius:8px;"> */
+/* Vamos a sobreescribirlo */
+
+.partido > div:first-child {
+    text-align: center !important;
+    margin-bottom: 15px !important;
+    padding: 10px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.encabezado img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+.partido > div:first-child > div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+}
+
+.partido > div:first-child strong {
+    font-size: 16px !important;
+    color: #e2e8f0 !important;
+    font-weight: 700 !important;
+}
+
+.partido > div:first-child span {
+    color: #facc15 !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+}
+
+.partido > div:first-child img {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: contain !important;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
 }
 
-.encabezado .equipo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* ===== RECUADRO BLANCO CON CHECKBOXES ===== */
+/* El HTML tiene: <div style="background:white;border-radius:10px;padding:8px;"> */
+.partido > div:nth-child(2) {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 14px !important;
+    padding: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.encabezado .equipo-local {
-    color: #93c5fd;
+.partido > div:nth-child(2) > div {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
 }
 
-.encabezado .equipo-visitante {
-    color: #f9a8d4;
-}
-
-.encabezado .vs {
-    color: #facc15;
-    font-weight: 900;
-    font-size: 18px;
-    padding: 0 8px;
-    text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
-}
-
-/* ===== INFO PARTIDO (día/hora) ===== */
-.info-partido {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #94a3b8;
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    padding: 4px 16px;
-    display: inline-block;
-    margin: 0 auto 14px auto;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-.info-wrapper {
-    text-align: center;
-}
-
-/* ===== OPCIONES ===== */
-.opciones {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    text-align: center;
-}
-
-.opciones label {
-    padding: 14px 10px;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
+/* ===== LABELS DE OPCIONES ===== */
+.partido label {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    padding: 12px 8px !important;
+    border-radius: 12px !important;
+    flex: 1 !important;
+    text-align: center !important;
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
     border: 2px solid transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
 }
 
-.opciones label:hover {
-    background: rgba(96, 165, 250, 0.12);
-    border-color: rgba(96, 165, 250, 0.3);
+.partido label:hover {
+    background: rgba(96, 165, 250, 0.1) !important;
+    border-color: rgba(96, 165, 250, 0.3) !important;
     transform: scale(1.02);
 }
 
-.opciones input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: #3b82f6;
-    cursor: pointer;
-    border-radius: 6px;
+.partido label:has(input:checked) {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== CHECKBOXES ===== */
+.partido input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    accent-color: #3b82f6 !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
     transition: all 0.2s;
 }
 
-.opciones input[type="checkbox"]:checked {
+.partido input[type="checkbox"]:checked {
     transform: scale(1.1);
 }
 
-.nombre-opcion {
-    font-size: 13px;
-    font-weight: 600;
-    color: #cbd5e1;
+/* ===== TEXTOS DENTRO DE LABELS ===== */
+.partido label span {
+    font-size: 12px !important;
+    color: #cbd5e1 !important;
+    font-weight: 600 !important;
 }
 
-/* Opción seleccionada */
-.opciones label:has(input:checked) {
-    background: rgba(59, 130, 246, 0.2);
-    border-color: #3b82f6;
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+.partido label:has(input:checked) span {
+    color: #93c5fd !important;
 }
 
-.opciones label:has(input:checked) .nombre-opcion {
-    color: #93c5fd;
+/* ===== IMÁGENES DENTRO DE LABELS ===== */
+.partido label img {
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: contain !important;
+    border-radius: 6px;
 }
 
 /* ===== FORMULARIO ===== */
@@ -208,6 +210,7 @@ input[type="text"] {
     font-size: 1rem;
     transition: all 0.3s;
     outline: none;
+    margin-bottom: 20px;
 }
 
 input[type="text"]::placeholder {
@@ -241,17 +244,6 @@ button:active {
     transform: scale(0.96);
 }
 
-.btn-azul {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
-    color: white;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
-}
-
-.btn-azul:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
-}
-
 .btn-verde {
     background: linear-gradient(135deg, #16a34a, #22c55e);
     color: white;
@@ -272,6 +264,17 @@ button:active {
 .btn-rojo:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(220, 38, 38, 0.45);
+}
+
+.btn-azul {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn-azul:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
 }
 
 .btn-morado {
@@ -369,56 +372,6 @@ h3 span {
     color: #94a3b8;
 }
 
-/* ===== TABLA DE POSICIONES ===== */
-#tablaPosiciones {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    border-radius: 16px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    margin: 20px 0;
-    overflow-x: auto;
-}
-
-#tablaPosiciones table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #e2e8f0;
-}
-
-#tablaPosiciones th {
-    background: rgba(59, 130, 246, 0.2);
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 700;
-    color: #93c5fd;
-    border-bottom: 2px solid rgba(59, 130, 246, 0.2);
-}
-
-#tablaPosiciones td {
-    padding: 10px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-#tablaPosiciones tr:hover td {
-    background: rgba(255, 255, 255, 0.03);
-}
-
-#tablaPosiciones .puesto-1 {
-    color: #facc15;
-    font-weight: 800;
-}
-
-#tablaPosiciones .puesto-2 {
-    color: #94a3b8;
-    font-weight: 700;
-}
-
-#tablaPosiciones .puesto-3 {
-    color: #f59e0b;
-    font-weight: 700;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
     body {
@@ -430,33 +383,30 @@ h3 span {
     }
 
     .partido {
-        padding: 14px 16px;
-        border-radius: 14px;
+        padding: 14px 16px !important;
+        border-radius: 14px !important;
     }
 
-    .encabezado {
-        font-size: 16px;
-        gap: 6px;
-        flex-wrap: wrap;
+    .partido > div:first-child img {
+        width: 40px !important;
+        height: 40px !important;
     }
 
-    .encabezado img {
-        width: 24px;
-        height: 24px;
+    .partido > div:first-child strong {
+        font-size: 14px !important;
     }
 
-    .opciones {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 6px;
+    .partido label {
+        padding: 8px 6px !important;
     }
 
-    .opciones label {
-        padding: 10px 6px;
-        border-radius: 10px;
+    .partido label span {
+        font-size: 11px !important;
     }
 
-    .nombre-opcion {
-        font-size: 11px;
+    .partido label img {
+        width: 35px !important;
+        height: 35px !important;
     }
 
     button {
@@ -468,10 +418,6 @@ h3 span {
     .grupo-botones {
         flex-direction: column;
         align-items: stretch;
-    }
-
-    .info-partido {
-        font-size: 0.7rem;
     }
 
     #listaQuinielas {
