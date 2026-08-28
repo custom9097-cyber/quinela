@@ -27,11 +27,11 @@ fetch('./partidos.json')
         <!-- TÍTULO DEL PARTIDO -->
         <div style="text-align:center;margin-bottom:10px;padding:6px;background:white;border-radius:8px;">
           <div style="display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;">
-            ${localLogo}
+            
             <strong style="font-size:13px;">${p.local}</strong>
             <span style="color:#999;font-size:12px;">VS</span>
             <strong style="font-size:13px;">${p.visitante}</strong>
-            ${visitanteLogo}
+            
           </div>
         </div>
         
