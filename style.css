@@ -1,0 +1,433 @@
+/* ===== RESET Y BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    min-height: 100vh;
+    padding: 30px 20px;
+    color: #f1f5f9;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== TÍTULO ===== */
+h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    padding-bottom: 15px;
+}
+
+/* ===== PARTIDO (sobreescribe los estilos inline) ===== */
+.partido {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px !important;
+    padding: 20px 24px !important;
+    margin-bottom: 18px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.partido:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    border-color: rgba(96, 165, 250, 0.3) !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* ===== ENCABEZADO DEL PARTIDO ===== */
+/* El HTML tiene: <div style="text-align:center;margin-bottom:10px;padding:6px;background:white;border-radius:8px;"> */
+/* Vamos a sobreescribirlo */
+
+.partido > div:first-child {
+    text-align: center !important;
+    margin-bottom: 15px !important;
+    padding: 10px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.partido > div:first-child > div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+}
+
+.partido > div:first-child strong {
+    font-size: 16px !important;
+    color: #e2e8f0 !important;
+    font-weight: 700 !important;
+}
+
+.partido > div:first-child span {
+    color: #facc15 !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+}
+
+.partido > div:first-child img {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+}
+
+/* ===== RECUADRO BLANCO CON CHECKBOXES ===== */
+/* El HTML tiene: <div style="background:white;border-radius:10px;padding:8px;"> */
+.partido > div:nth-child(2) {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 14px !important;
+    padding: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.partido > div:nth-child(2) > div {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+/* ===== LABELS DE OPCIONES ===== */
+.partido label {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    padding: 12px 8px !important;
+    border-radius: 12px !important;
+    flex: 1 !important;
+    text-align: center !important;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid transparent;
+}
+
+.partido label:hover {
+    background: rgba(96, 165, 250, 0.1) !important;
+    border-color: rgba(96, 165, 250, 0.3) !important;
+    transform: scale(1.02);
+}
+
+.partido label:has(input:checked) {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== CHECKBOXES ===== */
+.partido input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    accent-color: #3b82f6 !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
+    transition: all 0.2s;
+}
+
+.partido input[type="checkbox"]:checked {
+    transform: scale(1.1);
+}
+
+/* ===== TEXTOS DENTRO DE LABELS ===== */
+.partido label span {
+    font-size: 12px !important;
+    color: #cbd5e1 !important;
+    font-weight: 600 !important;
+}
+
+.partido label:has(input:checked) span {
+    color: #93c5fd !important;
+}
+
+/* ===== IMÁGENES DENTRO DE LABELS ===== */
+.partido label img {
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: contain !important;
+    border-radius: 6px;
+}
+
+/* ===== FORMULARIO ===== */
+input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    color: #f1f5f9;
+    font-size: 1rem;
+    transition: all 0.3s;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+input[type="text"]::placeholder {
+    color: #64748b;
+}
+
+input[type="text"]:focus {
+    border-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+/* ===== BOTONES ===== */
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.btn-verde {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.35);
+}
+
+.btn-verde:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.45);
+}
+
+.btn-rojo {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: white;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
+}
+
+.btn-rojo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.45);
+}
+
+.btn-azul {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn-azul:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
+}
+
+.btn-morado {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+}
+
+.btn-morado:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.45);
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #075e54, #128c7e);
+    color: white;
+    box-shadow: 0 4px 20px rgba(7, 94, 84, 0.4);
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(7, 94, 84, 0.5);
+}
+
+.grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* ===== TOTAL ===== */
+h3 {
+    text-align: center;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin: 20px 0 10px 0;
+    font-size: 1.1rem;
+}
+
+h3 span {
+    color: #facc15;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+/* ===== LISTA DE QUINIELAS ===== */
+#listaQuinielas {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin: 10px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+#listaQuinielas::-webkit-scrollbar {
+    width: 6px;
+}
+
+#listaQuinielas::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+#listaQuinielas::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+#listaQuinielas .quiniela-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#listaQuinielas .quiniela-item:last-child {
+    border-bottom: none;
+}
+
+#listaQuinielas .quiniela-nombre {
+    font-weight: 600;
+    color: #93c5fd;
+}
+
+#listaQuinielas .quiniela-predicciones {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 16px 12px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .partido {
+        padding: 14px 16px !important;
+        border-radius: 14px !important;
+    }
+
+    .partido > div:first-child img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .partido > div:first-child strong {
+        font-size: 14px !important;
+    }
+
+    .partido label {
+        padding: 8px 6px !important;
+    }
+
+    .partido label span {
+        font-size: 11px !important;
+    }
+
+    .partido label img {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        width: 100%;
+    }
+
+    .grupo-botones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #listaQuinielas {
+        font-size: 0.8rem;
+        padding: 12px 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .opciones {
+        grid-template-columns: 1fr 1fr;
+    }
+}
